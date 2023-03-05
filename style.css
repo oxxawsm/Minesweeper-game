@@ -1,0 +1,111 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Share Tech Mono', monospace;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: #121214;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    background-color: #c2c2c2;
+    padding: 12px;
+    gap: 12px;
+}
+
+.counter {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 408px;
+    height: 70px;
+    background-color: #c2c2c2;
+    border: 4px inset;
+    padding: 10px;
+}
+
+.mines-counter {
+    width: 80px;
+    height: 45px;
+    background-color: black;
+    color: #ff0701;
+    text-align: center;
+    font-size: 40px;
+    font-size: 36px;
+    line-height: 45px;
+}
+
+.smile {
+    display: flex;
+    width: 40px;
+    height: 40px;
+    border: 4px outset;
+    padding: 2px;
+}
+
+.timer {
+    width: 80px;
+    height: 45px;
+    background-color: black;
+    color: #ff0701;
+    text-align: center;
+    font-size: 36px;
+    line-height: 45px;
+}
+
+.game {
+    display: inline-grid;
+    width: 408px;
+    height: 408px;
+    background-color: #c2c2c2;
+    border: 4px inset;
+    grid-template-rows: repeat(var(--size), 25px);
+    grid-template-columns: repeat(var(--size), 25px);  
+}
+
+.game > * {
+    font-weight: 900;
+    font-size: 24px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    border: 4px outset;
+    user-select: none;
+}
+
+.smile-img.active {
+    content: url(./images/fear.png);
+}
+
+.game > [data-status="hidden"] {
+    background-color: #c2c2c2;
+    cursor: pointer;
+}
+  
+.game > [data-status="mine"] {
+    content: url(./images/mine.png);
+    border: 1px solid gray;
+    cursor: pointer;
+    background-color: red;
+}
+  
+.game > [data-status="number"] {
+    background-color: #c2c2c2;
+    cursor: pointer;
+    border: 1px solid gray;
+
+}
+  
+.game > [data-status="marked"] {
+    content: url('./images/flag.png');
+    cursor: pointer;
+}
