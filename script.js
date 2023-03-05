@@ -4,10 +4,26 @@ const GAME_SIZE = 16
 const NUMBER_OF_MINES = 40
 
 const game = createGame(GAME_SIZE, NUMBER_OF_MINES)
-const gameElement = document.querySelector(".game")
+const gameElement = document.querySelector('.game')
 const minesLeftCounter = document.querySelector('[data-mines-counter]')
 const button = document.querySelector('.smile')
+const timer = document.querySelector('.timer')
 
+let time
+function startWatch() {
+    if (time) clearInterval(time)
+    let sec = 0
+    timer.innerHTML = sec
+    time = setInterval(function(){
+        sec++
+        timer.innerHTML = sec
+    }, 1000)
+    }
+startWatch()
+
+function stopWatch() {
+    if (time) clearInterval(time)
+}
 
 game.forEach(row => {
     row.forEach(tile => {
@@ -33,7 +49,6 @@ button.addEventListener('click', () => {
     location.reload()
 })
 
-
 gameElement.style.setProperty('--size', GAME_SIZE)
 minesLeftCounter.textContent = NUMBER_OF_MINES
 
@@ -57,6 +72,7 @@ function checkGameEnd() {
 
     if (win) {
         button.classList.add('emoji-win'); 
+        stopWatch()
     }
 
     if (lose) {
@@ -67,6 +83,7 @@ function checkGameEnd() {
             })
         })
         button.classList.add('emoji-lose'); 
+        stopWatch()
     }
 }
 
@@ -82,3 +99,21 @@ function setFace() {
         }, 300)
     })
 }
+
+// let fromTime = new Date().getMinutes()
+// let seconds = 0
+// timer.addEventListener('seconds', () => seconds = new Date().getMinutes())
+// watch()
+
+// function watch() {
+//     let time = new Date().getMinutes()
+//     if (seconds) {
+//         fromTime += time - seconds/60
+//         seconds = time
+//     }
+//     timer.innerHTML = (time - fromTime)
+//     requestAnimationFrame(watch)
+// }
+
+
+
