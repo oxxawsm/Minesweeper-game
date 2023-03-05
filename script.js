@@ -100,20 +100,3 @@ function setFace() {
     })
 }
 
-// let fromTime = new Date().getMinutes()
-// let seconds = 0
-// timer.addEventListener('seconds', () => seconds = new Date().getMinutes())
-// watch()
-
-// function watch() {
-//     let time = new Date().getMinutes()
-//     if (seconds) {
-//         fromTime += time - seconds/60
-//         seconds = time
-//     }
-//     timer.innerHTML = (time - fromTime)
-//     requestAnimationFrame(watch)
-// }
-
-
-
