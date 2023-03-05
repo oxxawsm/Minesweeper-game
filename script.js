@@ -6,17 +6,15 @@ const NUMBER_OF_MINES = 40
 const game = createGame(GAME_SIZE, NUMBER_OF_MINES)
 const gameElement = document.querySelector(".game")
 const minesLeftCounter = document.querySelector('[data-mines-counter]')
+const button = document.querySelector('.smile')
 
-
-// console.log(game)
 
 game.forEach(row => {
     row.forEach(tile => {
         gameElement.append(tile.element)
         tile.element.addEventListener('click', () => {
             revealTile(game, tile)
-           
-            
+            setFace()
             checkGameEnd()
         })
         tile.element.addEventListener('contextmenu', e => {
@@ -26,6 +24,16 @@ game.forEach(row => {
         })
     })
 })
+
+button.addEventListener('click', () => {
+    button.classList.add('click')
+    setTimeout(function() {
+        button.classList.remove('click')
+    }, 300)
+    location.reload()
+})
+
+
 gameElement.style.setProperty('--size', GAME_SIZE)
 minesLeftCounter.textContent = NUMBER_OF_MINES
 
@@ -48,17 +56,17 @@ function checkGameEnd() {
     }
 
     if (win) {
-        emoji.setAttribute('src', './images/cool.png') 
+        button.classList.add('emoji-win'); 
     }
 
     if (lose) {
-        setFace()
         game.forEach(row => {
             row.forEach(tile => {
                 if (tile.TILE_STATUSES === TILE_STATUSES.MARKED) markTile(tile)
                 if (tile.mine) revealTile(game, tile)
             })
         })
+        button.classList.add('emoji-lose'); 
     }
 }
 
@@ -67,6 +75,10 @@ function stopProp(e) {
 }
 
 function setFace() {
-
+    gameElement.addEventListener('click', (event) => {
+        button.classList.add('click-tile')
+        setTimeout(function() {
+            button.classList.remove('click-tile')
+        }, 300)
+    })
 }
-

@@ -3,6 +3,7 @@ export const TILE_STATUSES = {
     MINE: "mine",
     NUMBER: "number",
     MARKED: "marked",
+    QUESTION: "question"
 }
   
 export function createGame(gameSize, numberOfMines) {
@@ -38,13 +39,19 @@ export function createGame(gameSize, numberOfMines) {
 
 export function markTile(tile) {
   if (
-    tile.status !== TILE_STATUSES.HIDDEN && tile.status !== TILE_STATUSES.MARKED
+    tile.status !== TILE_STATUSES.HIDDEN && tile.status !== TILE_STATUSES.MARKED && tile.status !== TILE_STATUSES.QUESTION
   ) {
       return
   }
   if (tile.status === TILE_STATUSES.MARKED) {
+    tile.status = TILE_STATUSES.QUESTION
+  } 
+  
+  else if (tile.status === TILE_STATUSES.QUESTION) {
     tile.status = TILE_STATUSES.HIDDEN
-  } else {
+  }
+  
+  else {
     tile.status = TILE_STATUSES.MARKED
   }
 }
@@ -65,6 +72,7 @@ export function revealTile(game, tile) {
     neighborTiles.forEach(revealTile.bind(null, game))
   } else {
     tile.element.textContent = mines.length
+    tile.element.classList.add('x' + mines.length.toString())
   }
 }
 

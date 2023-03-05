@@ -42,11 +42,38 @@ body {
 }
 
 .smile {
+    background-color: #c2c2c2;
     display: flex;
     width: 40px;
     height: 40px;
     border: 4px outset;
     padding: 2px;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+
+}
+
+.smile.click-tile {
+    content: url('./images/fear.png');
+}
+
+.smile.emoji-lose {
+    content: url('./images/dead.png');
+}
+
+.smile.emoji-win {
+    content: url('./images/cool.png');
+}
+
+.smile.click {
+    border: 4px inset;
+}
+
+.emoji-img {
+    display: flex;
+    width: 30px;
+    height: 30px;
 }
 
 .timer {
@@ -108,4 +135,36 @@ body {
 .game > [data-status="marked"] {
     content: url('./images/flag.png');
     cursor: pointer;
+}
+
+.game > [data-status="question"] {
+    content: url('./images/question-mark.png');
+    cursor: pointer;
+}
+
+.x1 {
+    color: blue;
+}
+
+.x2 {
+    color: green;
+}
+
+.x3 {
+    color: crimson;
+}
+.x4 {
+    color: darkblue;
+}
+.x5 {
+    color: purple;
+}
+.x6 {
+    color: cadetblue;
+}
+.x7 {
+    color: black;
+}
+.x8 {
+    color: dimgray;
 }
